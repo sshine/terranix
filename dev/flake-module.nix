@@ -49,13 +49,11 @@
         doc = docs;
         docs.program = pkgs.writeShellApplication {
           name = "docs";
-          runtimeInputs = with pkgs; [ pandoc gnumake nix ];
+          runtimeInputs = with pkgs; [ pandoc gnumake ];
           text = ''
             make --always-make --directory=doc
-            nix build ".#manPages"
-            cp -r result/share .
+            cp -r ${config.packages.manPages}/share .
             chmod -R 755 ./share
-            rm result
           '';
         };
       };
