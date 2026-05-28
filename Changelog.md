@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- fix: Use meta.mainProgram instead of hardcoded terraform binary (#156)
 - feat: add `.moved` and `.removed` keywords
 - chore: Add changelog check on CI (#141)
 - Add `lib.evalTerranixConfiguration` for evaluating terranix modules without creating a derivation
