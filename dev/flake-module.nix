@@ -16,7 +16,7 @@
             nixpkgs-fmt
             shfmt
             shellcheck
-            nodePackages.prettier
+            prettier
           ];
       };
 
