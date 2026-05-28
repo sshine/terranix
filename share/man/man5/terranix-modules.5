@@ -48,6 +48,9 @@ config\&.nix:
 \fIType:\fR
 lazy attribute set of raw value
 .sp
+\fIDefault:\fR
+{ }
+.sp
 \fIDeclared by:\fR
 .RS 4
 \m[blue]\fB<terranix/lib/modules\&.nix>\fR\m[]
@@ -242,7 +245,7 @@ bool, int, float or str
 .PP
 \fBimport\fR
 .RS 4
-\m[blue]\fB\fBimport\fR\fR\m[]Define terraform import\&. See for mote details : https://developer\&.hashicorp\&.com/terraform/language/import
+\m[blue]\fB\fBimport\fR\fR\m[]Define terraform import\&. See for more details : https://developer\&.hashicorp\&.com/terraform/language/import
 .sp
 \fIType:\fR
 bool, int, float or str
@@ -320,6 +323,36 @@ bool, int, float or str
       source = "github\&.com/hashicorp/example";
     };
   };
+}
+.fi
+.if n \{\
+.RE
+.\}
+.RE
+.PP
+\fBmoved\fR
+.RS 4
+\m[blue]\fB\fBmoved\fR\fR\m[]Move a resource from one address to another\&. See for more details : https://developer\&.hashicorp\&.com/terraform/language/block/moved
+.sp
+\fIType:\fR
+bool, int, float or str
+.sp
+\fIDefault:\fR
+{ }
+.sp
+\fIExample:\fR
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+{
+  moved = [
+    {
+      from = "aws_instance\&.example";
+      to = "aws_instance\&.other_example";
+    }
+  ];
 }
 .fi
 .if n \{\
@@ -558,6 +591,38 @@ string
 .RS 4
 \m[blue]\fB<terranix/modules/terraform/backends\&.nix>\fR\m[]
 .RE
+.RE
+.PP
+\fBremoved\fR
+.RS 4
+\m[blue]\fB\fBremoved\fR\fR\m[]Define a removed resource\&. See for more details : https://developer\&.hashicorp\&.com/terraform/language/state/remove
+.sp
+\fIType:\fR
+bool, int, float or str
+.sp
+\fIDefault:\fR
+{ }
+.sp
+\fIExample:\fR
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+{
+  removed = [
+    {
+      from = "aws_instance\&.example";
+      lifecycle = {
+        destroy = false;
+      };
+    }
+  ];
+}
+.fi
+.if n \{\
+.RE
+.\}
 .RE
 .PP
 \fBresource\fR

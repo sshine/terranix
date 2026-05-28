@@ -69,6 +69,9 @@ then
     exit 1
 fi
 
+# Newer Nix leaks a "structuredAttrs is enabled" line from the build phase
+# of `pkgs.formats.json.generate` past --quiet. Filter just that line so
+# real errors (used by failure-case tests) still reach stderr.
 TERRAFORM_JSON=$( nix-build \
     --no-out-link \
     --attr run \
@@ -85,7 +88,7 @@ let
   };
 in
   { run = (pkgs.formats.json { }).generate \"config.tf.json\" terranixCore.config; }
-" )
+" 2> >(grep -v '^structuredAttrs is enabled$' >&2) )
 
 NIX_BUILD_EXIT_CODE=$?
 if [[ $NIX_BUILD_EXIT_CODE -eq 0 ]]

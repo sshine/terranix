@@ -14,7 +14,14 @@ let
     sha256 = "0rbx10n8kk0bvp1nl5c8q79lz1w0p1b8103asbvwps3gmqd070hi";
   };
 
-  nmd = import nmdSrc { inherit pkgs; };
+  # nmd uses the removed `pkgs.substituteAll`; shim it to `replaceVars`
+  # for compatibility with nixpkgs >= 2025-05-23.
+  nmdPkgs = pkgs // {
+    substituteAll = args:
+      pkgs.replaceVars args.src (removeAttrs args [ "src" ]);
+  };
+
+  nmd = import nmdSrc { pkgs = nmdPkgs; };
 
   # Make sure the used package is scrubbed to avoid actually
   # instantiating derivations.
