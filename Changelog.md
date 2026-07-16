@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- feat: add `encrypt`, `use_lockfile`, `skip_credentials_validation` and `skip_region_validation` options to s3 backend (#168)
+
 ## [2.9.0] 2026-05-28
 
 - chore: Update flake inputs and fix nixpkgs deprecations (#165)

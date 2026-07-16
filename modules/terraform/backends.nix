@@ -38,6 +38,34 @@ let
           region of the bucket
         '';
       };
+      encrypt = mkOption {
+        type = with types; nullOr bool;
+        default = null;
+        description = ''
+          enable server side encryption of the state file
+        '';
+      };
+      use_lockfile = mkOption {
+        type = with types; nullOr bool;
+        default = null;
+        description = ''
+          enable locking directly into the configured bucket for the state
+        '';
+      };
+      skip_credentials_validation = mkOption {
+        type = with types; nullOr bool;
+        default = null;
+        description = ''
+          skip credentials validation via the STS API
+        '';
+      };
+      skip_region_validation = mkOption {
+        type = with types; nullOr bool;
+        default = null;
+        description = ''
+          skip validation of provided region name
+        '';
+      };
     };
   };
 
