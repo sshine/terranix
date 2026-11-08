@@ -23,8 +23,9 @@
       ];
       # After bumping nixpkgs, re-triage with
       #   nix run .#vulnix -- --write-whitelist dev/vulnix-whitelist.toml
-      # and review the diff: --write-whitelist accepts every current match, so
-      # it silently absolves new CVEs unless a human reads what it added.
+      # and review the diff: --write-whitelist merges into the loaded whitelist
+      # and accepts every current match, so it silently absolves new CVEs and
+      # keeps stale name-version entries unless a human prunes the file.
       whitelist = ./vulnix-whitelist.toml;
     in
     {
